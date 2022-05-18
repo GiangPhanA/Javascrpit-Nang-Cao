@@ -1,2 +1,10 @@
-IIFE: 
+IIFE: Immediately Invoked Function Expression
  + Hàm (biểu thức) được gọi ngay lập tức
+ 
+ 
+ -IIFE là viết tắt của Immediately Invoked Function Expression, có nghĩa là khởi tạo một function và thực thi nó ngay lập tức.
+Cú pháp của IIFE là:
+
+;(function(){
+ //code here
+})()
