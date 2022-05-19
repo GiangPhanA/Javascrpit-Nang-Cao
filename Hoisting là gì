@@ -6,7 +6,7 @@ Hoisting là gì
 -> Note Phần khai bái được đưa lên , phần gán không được đưa lên
 
 -> Hoisting trong javascript : đưa phần khai báo lên đầu phạm vi. Không gán giá trị
-
+-> khai báo biến  = từ khóa var -> gán giá trị  = undefiner.
 ví dụ: khai báo: var age
 
 ví dụ : gán age = 16;
@@ -27,3 +27,15 @@ function sum(a,b){
 2. Hoisting với let và const
 -> đều được hoisting
 -> Khai báo biến với let, const khi được hoised không được tạo giá trị và được đưa vào "Temporal Dead Zone"
+-> Được hoisting ->nhưng khởi tạo giá trị mặc định -> vùng tạm thời không truy cập được.
+-> không sử dụng được -> cho đến khi đến dòng khai báo và gán giá trị cho nó (khởi tạo)
+
+Ví dụ: 
+
+{
+console.log(fullName)// ReferencenError : Cannot access 'fullName' before initization
+
+let fullName = 'Nguyen Van A"
+}
+
+3. Lấy ở phạm vi ngần nhất.
