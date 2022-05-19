@@ -1,0 +1,24 @@
+Function declaration và Function expression 
+
+1. Function Declarations
+
+function test() {
+    console.log("Đây là Function Declarations")
+}
+
+2. Function Expressions
+
+var test = function(){
+    console.log("Đây là Function Expressions")
+}
+Với cách khai báo này:
+
+    Toàn bộ function statement của bạn sẽ được lưu vào trong biến test.
+    Hàm của bạn cũng ko cần có tên, vì nó sẽ được gọi thông qua biến test.
+
+Vậy khác biệt giữa 2 kiểu khai báo này là gì ?
+
+    Function Declarations luôn được ưu tiên load (biên dịch) trước. Còn Function expressions nó sẽ được load theo đúng thứ tự,
+    khi nào trình biên dịch chạy tới dòng đó thì nó mới được load.
+    Tương tự như các biến khai báo bằng var, declarations function cũng được hoisted lên trên code khác,
+    còn Function expressions thì ko được hoisting.
