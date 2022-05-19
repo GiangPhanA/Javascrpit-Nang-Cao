@@ -22,3 +22,37 @@ Vậy khác biệt giữa 2 kiểu khai báo này là gì ?
     khi nào trình biên dịch chạy tới dòng đó thì nó mới được load.
     Tương tự như các biến khai báo bằng var, declarations function cũng được hoisted lên trên code khác,
     còn Function expressions thì ko được hoisting.
+
+
+Xem qua ví dụ sau để hiểu hơn nhé.
+
+Bạn sẽ không hề gặp lỗi gì khi thực thi lời gọi hàm ngay cả trước khi code khởi tạo hàm.
+Lý do là trình biên dịch đã ngầm dịch chuyển khai báo hàm test lên trước khi hàm được gọi.
+
+test(); 
+function test() {
+    return "Đây là Function Declarations"
+}
+
+Result: Đây là Function Declarations
+
+
+Còn với ví dụ bên dưới bạn hiển nhiên sẽ ăn ngay một lỗi vì nó ko tìm thấy hàm test ở thời điểm bạn gọi nó.
+
+test(); 
+var test = function(){
+    console.log("Đây là Function Expressions")
+}
+
+Result: error: Uncaught TypeError: test is not a function
+
+Vậy khi nào nên dùng Function Declarations và khi nào nên Function Expressions.
+
+Mọi người hay dùng Function Declarations khi muốn biến các functions đó ở dạng global, có thể gọi ở bất kì đâu.
+Còn Function Expressions thì dùng trong các trường hợp như:
+
+    Muốn dùng function đó được truyền vào 1 function khác (callback chẳng hạn)
+    Khi muốn dùng nó như 1 closure
+    …một vài trường hợp khác mình ko nhớ, nhờ bạn comment giúp mình nhé.
+    
+ - Việc kết hợp dùng thêm Function Expressions thay vì lúc nào cũng Function Declarations sẽ code của bạn clean hơn và dễ kiểm soát code hơn.
