@@ -1,0 +1,58 @@
+Hiểu Scope và Context trong JavaScript 
+
+https://viblo.asia/p/hieu-scope-va-context-trong-javascript-3P0lPArm5ox
+
+Scope và context là những đặc điểm độc nhất của JavaScript. 
+Function có thể được áp dụng cho nhiều context và scope có thể được đóng gói. 
+Tuy nhiên, điều này cũng là nguồn cơn gây nhầm lẫn cho rất nhiều developer. 
+Sau đây là phần giải thích toàn diện về scope và context, sự khác biệt và cách các design pattern sử dụng chúng.
+
+Context vs. Scope
+
+Điều đầu tiên là phải phân biệt: context và scope là 2 khái niệm khác nhau.
+Tôi thấy rất nhiều developer nhầm lẫn 2 thuật ngữ này trong một thời gian dài (bao gồm cả tôi).
+
+Mỗi khi function được gọi thì có cả scope và context kết hợp với nó.
+Về cơ bản, scope là dựa trên function, còn context dựa trên object. 
+Nói cách khác, scope liên quan đến việc function truy xuất biến khi nó được gọi. 
+Còn context luôn chỉ đến giá trị của từ khóa this tham chiếu đến object sở hữu đoạn code đang được thực thi.
+
+Variable Scope
+
+Một biến có thể được định nghĩa trong phạm vi cục bộ (local scope) hoặc toàn cục (global scope), 
+thiết lập khả năng truy cập biến từ các phạm vi khác nhau. Bất kỳ biến toàn cục 
+(tức là những biến khai báo ngoài phạm vi của function) sẽ tồn tại suốt thời gian chạy 
+và được truy cập và chỉnh sửa từ bất kỳ phạm vi nào. Biến local chỉ tồn tại trong phần thân 
+hàm nơi nó được định nghĩa và có phạm vi khác nhau tùy theo cuộc gọi hàm. Ở đó nó chỉ có thể gán giá trị,
+truy xuất vào thao tác chỉ trong cuộc gọi đó và không thể được truy xuất bên ngoài hàm.
+
+ECMAScript 6 (ES6/ES2015) giới thiệu 2 từ khóa là let và const cho phép khai báo biến cục bộ của một block scope.
+Tức là biến được giới hạn trong phạm vi của block nơi nó được định nghĩa, chẳng hạn như trong câu lệnh if hoặc vòng lặp for.
+Điều này trái ngược với việc khai báo biến sử dụng từ khóa var, khi đó ta có thể truy cập biến ngoài block nó định nghĩa. 
+Sự khác biệt giừa let và const là const là khai báo tham số, tức giá trị đã gán cho biến sẽ không thể thay đổi.
+
+
+“this” Context là gì
+
+Context (hay ngữ cảnh) thường được xác định bằng cách gọi hàm. Khi một hàm được gọi như một phương thức của object, this sẽ là đối tượng đó.
+
+var obj = {
+    foo: function() {
+        return this;   
+    }
+};
+
+obj.foo() === obj; // true
+
+Nguyên tắc này cũng đúng khi gọi hàm bằng từ khóa new để tạo một thực thể của đối tượng.
+Khi gọi theo cách này, giá trị của this trong phạm vi của hàm sẽ là thực thể vừa tạo:
+
+function foo() {
+    alert(this);
+}
+
+foo() // window
+new foo() // foo
+
+Khi được gọi như một unbound function, this mặc định trỏ đến ngữ cảnh toàn cục hoặc window object trong trình duyệt. 
+Tuy nhiên, nếu function được thực thi ở strict mode thì context mặc định là undefined.
